@@ -1,41 +1,30 @@
 <?php
 
-namespace VendorName\Skeleton\Tests;
+namespace Combindma\Fpay\Tests;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
+use Combindma\Fpay\Fpay;
+use Combindma\Fpay\FpayServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
-use VendorName\Skeleton\SkeletonServiceProvider;
 
 class TestCase extends Orchestra
 {
-    protected function setUp(): void
-    {
-        parent::setUp();
+    public Fpay $fpay;
 
-        /*Factory::guessFactoryNamesUsing(
-            fn (string $modelName) => 'VendorName\\Skeleton\\Database\\Factories\\'.class_basename($modelName).'Factory'
-        );*/
-    }
-
-    protected function getPackageProviders($app)
+    protected function getPackageProviders($app): array
     {
         return [
-            SkeletonServiceProvider::class,
+            FpayServiceProvider::class,
         ];
     }
 
     public function getEnvironmentSetUp($app)
     {
-        config()->set('database.default', 'testing');
-        config()->set('database.connections.testing', [
-            'driver' => 'sqlite',
-            'database' => ':memory:',
-            'prefix' => '',
-        ]);
         config()->set('app.locale', 'fr');
-        /*
-        $migration = include __DIR__.'/../database/migrations/create_skeleton_table.php.stub';
-        $migration->up();
-        */
+        $app['config']->set('fpay.merchantId', 'valid_string');
+        $app['config']->set('fpay.merchantKey', 'valid_string');
+        $app['config']->set('fpay.baseUri', 'https://test.fpay.ma');
+        $app['config']->set('fpay.callbackUrl', 'https://test.fpay.ma');
+        $app['config']->set('fpay.merchantUrl', 'https://test.fpay.ma');
+        $this->fpay = new Fpay();
     }
 }

@@ -1,17 +1,17 @@
 {
-    "name": ":vendor_slug/:package_slug",
-    "description": ":package_description",
+    "name": "combindma/laravel-fpay",
+    "description": "Laravel package integration to Fpay payment plateform",
     "keywords": [
-        ":vendor_name",
+        "combindma",
         "laravel",
-        ":package_slug"
+        "laravel-fpay"
     ],
-    "homepage": "https://github.com/:vendor_slug/:package_slug",
+    "homepage": "https://github.com/combindma/laravel-fpay",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": "author@domain.com",
+            "name": "Combind",
+            "email": "webmaster@combind.ma",
             "role": "Developer"
         }
     ],
@@ -34,13 +34,12 @@
     },
     "autoload": {
         "psr-4": {
-            "VendorName\\Skeleton\\": "src",
-            "VendorName\\Skeleton\\Database\\Factories\\": "database/factories"
+            "Combindma\\Fpay\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "VendorName\\Skeleton\\Tests\\": "tests"
+            "Combindma\\Fpay\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -60,10 +59,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "VendorName\\Skeleton\\SkeletonServiceProvider"
+                "Combindma\\Fpay\\FpayServiceProvider"
             ],
             "aliases": {
-                "Skeleton": "VendorName\\Skeleton\\Facades\\Skeleton"
+                "Fpay": "Combindma\\Fpay\\Facades\\Fpay"
             }
         }
     },

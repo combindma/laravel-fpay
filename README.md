@@ -1,20 +1,10 @@
-# :package_description
+# Laravel package integration to Fpay payment plateform
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/:vendor_slug/:package_slug.svg?style=flat-square)](https://packagist.org/packages/:vendor_slug/:package_slug)
-[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/:vendor_slug/:package_slug/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/:vendor_slug/:package_slug/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/:vendor_slug/:package_slug/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/:vendor_slug/:package_slug/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
-[![Total Downloads](https://img.shields.io/packagist/dt/:vendor_slug/:package_slug.svg?style=flat-square)](https://packagist.org/packages/:vendor_slug/:package_slug)
-<!--delete-->
----
-This repo can be used to scaffold a Laravel package. Follow these steps to get started:
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/combindma/laravel-fpay.svg?style=flat-square)](https://packagist.org/packages/combindma/laravel-fpay)
+[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/combindma/laravel-fpay/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/combindma/laravel-fpay/actions?query=workflow%3Arun-tests+branch%3Amain)
+[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/combindma/laravel-fpay/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/combindma/laravel-fpay/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
+[![Total Downloads](https://img.shields.io/packagist/dt/combindma/laravel-fpay.svg?style=flat-square)](https://packagist.org/packages/combindma/laravel-fpay)
 
-1. Press the "Use this template" button at the top of this repo to create a new repo with the contents of this skeleton.
-2. Run "php ./configure.php" to run a script that will replace all placeholders throughout all the files.
-3. Have fun creating your package.
-4. If you need help creating a package, consider picking up our <a href="https://laravelpackage.training">Laravel Package Training</a> video course.
----
-<!--/delete-->
-This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
 
 ## About Combind Agency
 
@@ -25,23 +15,16 @@ If you need assistance with your next project or would like to discuss a custom 
 
 ## Installation
 
-You can install the package via composer:
+Vous pouvez installer le package via composer :
 
 ```bash
-composer require :vendor_slug/:package_slug
+composer require combindma/laravel-fpay
 ```
 
-You can publish and run the migrations with:
+En option, vous pouvez publier le fichier de configuration avec :
 
 ```bash
-php artisan vendor:publish --tag=":package_slug-migrations"
-php artisan migrate
-```
-
-You can publish the config file with:
-
-```bash
-php artisan vendor:publish --tag=":package_slug-config"
+php artisan vendor:publish --tag="laravel-fpay-config"
 ```
 
 This is the contents of the published config file:
@@ -51,18 +34,31 @@ return [
 ];
 ```
 
-Optionally, you can publish the views using
+Optionnellement, vous pouvez publier les vues en utilisant :
 
 ```bash
-php artisan vendor:publish --tag=":package_slug-views"
+php artisan vendor:publish --tag="laravel-fpay-views"
 ```
 
-## Usage
+## Configuration
+
+Vous devez fournir toutes les informations d'identification requises dans votre fichier .env :
 
 ```php
-$variable = new VendorName\Skeleton();
-echo $variable->echoPhrase('Hello, VendorName!');
+FPAY_CLIENT_ID= //Identifiant du marchand (attribué par le FPAY)
+FPAY_SECRET_KEY= //clé secrète du magasin (configurée dans votre espace back office de la plate-forme FPAY)
+FPAY_BASE_URI= //Gateway de paiement en mode web (attribué par le FPAY). Exemple de test: https://testpayment.FPAY.co.ma/fim/est3Dgate
+FPAY_OK_URL= //L’URL utilisée pour rediriger le client vers le site marchand en cas d’autorisation de paiement acceptée.
+FPAY_FAIL_URL= //L’URL utilisée pour rediriger le client vers le site marchand en cas d’autorisation de paiement échouée.
+FPAY_SHOP_URL= //L'URL de retour vers laquelle le client est redirigé lorsqu'il clique sur le bouton "Annuler" affiché sur la page de paiement.
+FPAY_CALLBACK_URL= //L’URL utilisée dans la requête de confirmation de paiement en mode server to server
 ```
+
+Voir ci-dessous comment configurer les okUrl, failUrl, shopUrl et callbackUrl.
+
+## Utilisation
+
+Par exemple, imaginez que vous avez un site de commerce en ligne, et dans votre CheckoutController, vous voulez ajouter FPAY Gateway. Vous devez donc ajouter la trait FPAY Gateway à ce contrôleur :
 
 ## Testing
 
@@ -84,7 +80,7 @@ Please review [our security policy](../../security/policy) on how to report secu
 
 ## Credits
 
-- [:author_name](https://github.com/:author_username)
+- [Combind](https://github.com/combindma)
 - [All Contributors](../../contributors)
 
 ## License
