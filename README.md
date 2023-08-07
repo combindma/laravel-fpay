@@ -52,7 +52,7 @@ FPAY_MERCHANT_URL= //L'URL de retour vers laquelle le client est redirigé lorsq
 FPAY_URLREPAUTO= //L’URL utilisée dans la requête de confirmation de paiement en mode server to server
 ```
 
-Voir ci-dessous comment configurer les okUrl, failUrl, shopUrl et callbackUrl.
+Voir ci-dessous comment configurer les routes.
 
 ## Utilisation
 
