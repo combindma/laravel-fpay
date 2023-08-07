@@ -45,20 +45,18 @@ php artisan vendor:publish --tag="laravel-fpay-views"
 Vous devez fournir toutes les informations d'identification requises dans votre fichier .env :
 
 ```php
-FPAY_CLIENT_ID= //Identifiant du marchand (attribué par le FPAY)
-FPAY_SECRET_KEY= //clé secrète du magasin (configurée dans votre espace back office de la plate-forme FPAY)
-FPAY_BASE_URI= //Gateway de paiement en mode web (attribué par le FPAY). Exemple de test: https://testpayment.FPAY.co.ma/fim/est3Dgate
-FPAY_OK_URL= //L’URL utilisée pour rediriger le client vers le site marchand en cas d’autorisation de paiement acceptée.
-FPAY_FAIL_URL= //L’URL utilisée pour rediriger le client vers le site marchand en cas d’autorisation de paiement échouée.
-FPAY_SHOP_URL= //L'URL de retour vers laquelle le client est redirigé lorsqu'il clique sur le bouton "Annuler" affiché sur la page de paiement.
-FPAY_CALLBACK_URL= //L’URL utilisée dans la requête de confirmation de paiement en mode server to server
+FPAY_MERCHANT_ID= //Identifiant du marchand (attribué par FPAY)
+FPAY_MERCHANT_KEY= //clé secrète du magasin (configurée dans votre espace back office de la plate-forme FPAY)
+FPAY_BASE_URI= //Gateway de paiement en mode web (attribué par le FPAY). Exemple de test: https://payment.fpay-worldwide.com/sandbox/fpay-frontend/fpayreq
+FPAY_MERCHANT_URL= //L'URL de retour vers laquelle le client est redirigé lorsqu'il clique sur le bouton "Annuler" affiché sur la page de paiement.
+FPAY_URLREPAUTO= //L’URL utilisée dans la requête de confirmation de paiement en mode server to server
 ```
 
 Voir ci-dessous comment configurer les okUrl, failUrl, shopUrl et callbackUrl.
 
 ## Utilisation
 
-Par exemple, imaginez que vous avez un site de commerce en ligne, et dans votre CheckoutController, vous voulez ajouter FPAY Gateway. Vous devez donc ajouter la trait FPAY Gateway à ce contrôleur :
+En cours de préparation
 
 ## Testing
 
